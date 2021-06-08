@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
-<!--
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
-		<title>Elements - Spectral by HTML5 UP</title>
+		<title>Infinity IT</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.ohno{
+				opacity: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 0;
+				width: 0;
+				z-index: -1;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -19,7 +26,7 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="index.html">Hem</a></h1>
+						<h1><a href="index.html">INFINITY IT</a></h1>
 						<nav id="nav">
 							<ul>
 								<li class="special">
@@ -48,18 +55,18 @@
 
 							
 								<h4>Kontakta oss</h4>
-								<form method="post" action="#">
+								<form method="post" name="theForm" action="#" onsubmit="return validateForm()">
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-xsmall">
 											<input type="text" name="demo-name" id="demo-name" value="" placeholder="Namn" />
 										</div>
 										<div class="col-6 col-12-xsmall">
-											<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+											<input type="text" name="demo-email" id="demo-email" value="" placeholder="Email" />
 										</div>
 										
 										<div class="col-6 col-12-small">
 											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">Jag är inte en robot</label>
+											<label for="demo-human">Ha denna <strong>ikryssad</strong> om du är en robot.</label>
 										</div>
 										<div class="col-12">
 											<textarea name="demo-message" id="demo-message" placeholder="Skriv in ditt meddelande" rows="6"></textarea>
@@ -70,6 +77,11 @@
 											</ul>
 										</div>
 									</div>
+									   <!-- B R A SKIT -->
+										<label class="ohno" for="name"></label>
+										<input class="ohno" autocomplete="off" type="text" id="name" name="name" placeholder="Your name here">
+										<label class="ohno" for="email"></label>
+										<input class="ohno" autocomplete="off" type="email" id="email" name="email" placeholder="Your e-mail here">
 								</form>
 								<hr />	
 						</section>	
@@ -83,7 +95,7 @@
 							<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
 							<!-- <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
 							<!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
-							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+							<li><a href="mailto:info@infinity-it.se" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 						</ul>
 						<ul class="copyright">
 							<li>&copy; Infinity IT 2021</li>
@@ -100,6 +112,26 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+			function validateForm() {
+				var a = document.forms["theForm"]["demo-name"];
+				var w = document.getElementById("demo-email");
+				var x = document.forms["theForm"]["demo-human"];
+				var t = document.forms["theForm"]["demo-message"].value;
+				var y = document.getElementById("name");
+				var z = document.getElementById("email");
+				var b, c, d;
+				b = a.value + w.value + c.value + t;
+				c = y.value + x.checked + z;
+				d = t + x.value + a.value + z.value;
+				console.log(b);
+				console.log(c);
+				console.log(d);
+				  return false;
+				
+			  }
+
+			</script>
 
 	</body>
 </html>
