@@ -62,7 +62,7 @@
 											<input type="text" name="demo-name" id="demo-name" value="" placeholder="Namn" />
 										</div>
 										<div class="col-6 col-12-xsmall">
-											<input type="text" name="demo-email" id="demo-email" value="" placeholder="Email" />
+											<input type="text" name="_replyto" id="demo-email" value="" placeholder="Email" />
 										</div>
 										
 										<div class="col-6 col-12-small">
@@ -163,7 +163,8 @@
 						setMess("Epostadressen är felaktig.", false);
 						return false;
 					}
-					if (c.length != 4){
+					console.log("c=" + c + " c.length= " + c.length);
+					if (c.length == 4){
 						window.location.replace("/thanks.html");
 						return false;
 					}
