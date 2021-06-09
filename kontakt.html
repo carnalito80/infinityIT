@@ -55,7 +55,8 @@
 
 							
 								<h4>Kontakta oss</h4>
-								<form method="post" name="theForm" action="#" onsubmit="return validateForm()">
+								<div id="message"></div>
+								<form method="post" id="theForm" name="theForm" action="#" autocomplete="off">
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-xsmall">
 											<input type="text" name="demo-name" id="demo-name" value="" placeholder="Namn" />
@@ -84,6 +85,7 @@
 										<input class="ohno" autocomplete="off" type="email" id="email" name="email" placeholder="Your e-mail here">
 								</form>
 								<hr />	
+								</div>
 						</section>	
 										
 											
@@ -113,23 +115,81 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>
+			
+			$(function() {
+    
+				$("#theForm").submit(function(e) {
+
+					//prevent Default functionality
+					e.preventDefault();
+
+					//get the action-url of the form
+					var actionurl = 'https://formspree.io/xlepjnol';
+
+					//do your own request an handle the results
+					if (validateForm()) {
+					$.ajax({
+							url: actionurl,
+							type: 'post',
+							dataType: 'application/json',
+							data: $("#myform").serialize(),
+							success: function(data) {
+								setMess('Meddelande inte skickat.', true);
+							},
+							error: function(data) {
+								setMess('Servern returnerade ett fel, ditt meddelande skickades ej.', false);
+							}
+					});
+					}
+				});
+
+			});
+
+
+
 			function validateForm() {
 				var a = document.forms["theForm"]["demo-name"];
 				var w = document.getElementById("demo-email");
 				var x = document.forms["theForm"]["demo-human"];
 				var t = document.forms["theForm"]["demo-message"].value;
 				var y = document.getElementById("name");
-				var z = document.getElementById("email");
+				var z = document.getElementById("email").value;
 				var b, c, d;
-				b = a.value + w.value + c.value + t;
+				b = a.value + w.value + t;
 				c = y.value + x.checked + z;
-				d = t + x.value + a.value + z.value;
-				console.log(b);
-				console.log(c);
-				console.log(d);
-				  return false;
+				d = t + x.value + a.value + z;
+				console.log("c " + "is " + c + "and length "+ c.length) 
+				if (b.length > 0) {
+					if (!isEmail(w.value)) {
+						setMess("Epostadressen är felaktig.", false);
+						return false;
+					}
+					if (c.length != 5){
+						window.location.replace("/thanks.html");
+						return false;
+					}
+					else return true;
+					
+				}
+				else setMess("Meddelande inte skickat.", false);
+				return false;
 				
 			  }
+
+			  function setMess(mess, sent = false) {
+				$("#message").css("padding", 10);
+				$("#message").css("color", "white");
+				if (sent == false) $("#message").css("background-color", "#eb341c");
+				else  $("#message").css("background-color", "green");
+				$("#message").text(mess);
+
+			  }
+			  function isEmail(email) {
+				var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				console.log(email + "is email?? " + regex.test(email));
+				return regex.test(email);
+				}
+			
 
 			</script>
 
